@@ -33,6 +33,9 @@ import pl.alexbul.weatherapp.ui.theme.BlueLight
 @Preview(showBackground = true)
 @Composable
 fun MainScreen() {
+
+    //comment for commit
+
     Image(
         painter = painterResource(id = R.drawable.fon), contentDescription = "fon1",
         modifier = Modifier
