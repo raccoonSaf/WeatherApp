@@ -37,6 +37,7 @@ import pl.alexbul.weatherapp.R
 import pl.alexbul.weatherapp.ui.theme.BlueLight
 
 
+
 @Preview(showBackground = true)
 @Composable
 fun MainCard() {
@@ -149,40 +150,46 @@ fun TabLayout() {
     val tabIndex = pagerState.currentPage
     val coroutineScope = rememberCoroutineScope()
 
-    Column(modifier = Modifier
-        .padding(5.dp)
-        .clip(RoundedCornerShape(5.dp)))
+    Column(
+        modifier = Modifier
+            .padding(5.dp)
+            .clip(RoundedCornerShape(5.dp))
+    )
     {
         TabRow(
             selectedTabIndex = tabIndex, indicator = { post ->
                 TabRowDefaults.Indicator(
-                    Modifier.pagerTabIndicatorOffset(pagerState,post))
+                    Modifier.pagerTabIndicatorOffset(pagerState, post)
+                )
 
 
             },
-         backgroundColor = BlueLight
+            backgroundColor = BlueLight,
+
         ) {
             tabList.forEachIndexed { index, text ->
                 Tab(
                     selected = false,
                     onClick = {
-                              coroutineScope.launch {
-                                  pagerState.animateScrollToPage(index)
-                              }
+                        coroutineScope.launch {
+                            pagerState.animateScrollToPage(index)
+                        }
 
                     },
                     text = {
-                        Text(text = text)
+                        Text(text = text,
+                            color = Color.White)
                     }
 
                 )
 
             }
         }
-        HorizontalPager(count = tabList.size, state =pagerState,
-            modifier = Modifier.weight(1.0f)) {
-            index ->
+        HorizontalPager(
+            count = tabList.size, state = pagerState,
+            modifier = Modifier.weight(1.0f)
+        ) { index ->
         }
     }
-    
+
 }
